@@ -9,6 +9,7 @@ class RobotGame
     @f = f
     @arr_place = [x, y, f]
     @direction = ['NORTH', 'EAST', 'SOUTH', 'WEST']
+    @qqq = false
   end
 
   def place
@@ -56,6 +57,7 @@ class RobotGame
       operation = oper_1[0]
       case operation
       when 'place'
+        @qqq = true
         if oper_1[1] != nil
           oper_2 = oper_1[1].split(',')
           @x = oper_2[0].to_i
@@ -64,13 +66,21 @@ class RobotGame
           place
         end
       when 'move'
-        move
+        if @qqq
+          move
+        end
       when 'left'
-        left
+        if @qqq
+          left
+        end
       when 'right'
-        right
+        if @qqq
+          right
+        end
       when 'report'
-        report
+        if @qqq
+          report
+        end
       else puts "Invalid commands entered. Enter the correct commands."
       end
     end
