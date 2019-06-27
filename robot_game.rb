@@ -16,15 +16,41 @@ class RobotGame
   end
 
   def table_size
-    puts "Enter the operation X and Y"
-    @max_x = gets.chomp.to_i
-    @max_y = gets.chomp.to_i
+    puts "Enter the table size, default X = 5, Y = 6"
+
+    loop do
+      puts "Enter the operation X"
+      varX = gets.chomp
+      if varX.empty?
+        break
+      elsif varX.kind_of?(String)
+        varX_int = varX.to_i
+        if varX_int != 0
+          @max_x = varX_int
+          break
+        end
+      end
+    end
+    loop do
+      puts "Enter the operation Y"
+      varY = gets.chomp
+      if varY.empty?
+        break
+      elsif varY.kind_of?(String)
+        varY_int = varY.to_i
+        if varY_int != 0
+          @max_y = varY_int
+          break
+        end
+      end
+    end
+
     run
   end
 
   def run
     loop do
-      puts "Enter the operation"
+      puts "Enter the operation: 'place', 'move', 'left', 'right' or 'report'"
       input = gets.chomp
       oper_1 = input.split(' ')
       operation = oper_1[0]
@@ -45,7 +71,7 @@ class RobotGame
         right
       when 'report'
         report
-      else # puts "Enter the operation"
+      else puts "Invalid commands entered. Enter the correct commands."
       end
     end
   end
