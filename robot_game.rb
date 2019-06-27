@@ -51,7 +51,7 @@ class RobotGame
 
   def run
     loop do
-      puts "Enter the operation: 'place', 'move', 'left', 'right' or 'report'"
+      puts "Enter the operation: 'place', 'move', 'left', 'right' or 'report'. First command must be 'place'"
       input = gets.chomp
       oper_1 = input.split(' ')
       operation = oper_1[0]
