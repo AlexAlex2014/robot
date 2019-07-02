@@ -2,12 +2,28 @@
 
 # Create module Move robot
 module Move
+  def check_direction_north
+    @vert += 1 unless @vert >= @max_y
+  end
+
+  def check_direction_south
+    @vert -= 1 unless @vert <= @min_y
+  end
+
+  def check_direction_east
+    @hor += 1 unless @hor >= @max_x
+  end
+
+  def check_direction_west
+    @hor -= 1 unless @hor <= @min_x
+  end
+
   def move
     case @direct
-    when 'NORTH' then @vert += 1 unless @vert >= @max_y
-    when 'SOUTH' then @vert -= 1 unless @vert <= @min_y
-    when 'EAST' then @hor += 1 unless @hor >= @max_x
-    when 'WEST' then @hor -= 1 unless @hor <= @min_x
+    when 'NORTH' then check_direction_north
+    when 'SOUTH' then check_direction_south
+    when 'EAST' then check_direction_east
+    when 'WEST' then check_direction_west
     end
   end
 
