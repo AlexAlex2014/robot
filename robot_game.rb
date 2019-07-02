@@ -52,30 +52,42 @@ class RobotGame
     puts 'Enter the table size, default X = 5, Y = 6'
     table_size_x
     table_size_y
-    run
+    console
   end
 
-  def run
+  def console
     loop do
       puts "Enter command:'place'(First com.),'move','left','right','report'"
-      input = gets.chomp
-      oper_f = input.split(' ')
-      case oper_f[0]
-      when 'place'
-        @qqq = true
-        unless oper_f[1].nil?
-          oper_s = oper_f[1].split(',')
-          @hor = oper_s[0].to_i
-          @vert = oper_s[1].to_i
-          @direct = oper_s[2]
-          place
-        end
-      when 'move' then move if @qqq
-      when 'left' then left if @qqq
-      when 'right' then right if @qqq
-      when 'report' then report if @qqq
-      else puts 'Invalid commands entered. Enter the correct commands.'
-      end
+      input_str = gets.chomp.split(' ')
+      run(input_str)
+      commands(input_str) if @qqq && input_str[0] != 'place'
+    end
+  end
+
+  def run_console(oper_s)
+    @qqq = true
+    return if oper_s[1].nil?
+
+    oper_s = oper_s[1].split(',')
+    @hor = oper_s[0].to_i
+    @vert = oper_s[1].to_i
+    @direct = oper_s[2]
+    place
+  end
+
+  def run(input)
+    case input[0]
+    when 'place' then run_console(input)
+    end
+  end
+
+  def commands(input_com)
+    case input_com[0]
+    when 'move' then move
+    when 'left' then left
+    when 'right' then right
+    when 'report' then report
+    else puts 'Invalid commands entered. Enter the correct commands.'
     end
   end
 
